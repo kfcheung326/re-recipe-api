@@ -1,2 +1,2 @@
-# recipe web api
+# learning platform api
 
