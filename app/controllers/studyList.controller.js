@@ -1,40 +1,38 @@
 const db = require("../models");
-const Video = db.video;
+const StudyList = db.studyList;
 
-exports.uploadVideo = (req, res) => {
-    const video = new Video({
-        name:req.body.name,
-        link:req.body.link,
-        wordList:req.body.wordList
+exports.createStudyList = (req, res) => {
+    const studyList = new StudyList({
+        userId:req.body.userId,
+        words:req.body.words
     });
 
-    video.save((err, user) => {
+    studyList.save((err, user) => {
             if (err) {
               res.status(500).send({ message: err });
               return;
             }
-    res.send({ message: "video was upload successfully!" });
+    res.send({ message: "studyList was upload successfully!" });
 
     });
 
 };
 
-exports.listVideo = (req, res) => {
-  Video.find()
+exports.listStudyList = (req, res) => {
+  StudyList.find({userId:req.body.userId})
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving video."
+          err.message || "Some error occurred while retrieving studyList."
       });
     });
 
 };
 
-
-//update the existing recipe to db
+//update the existing wordslist to db
 exports.update =  (req, res) => {
   if (!req.body) {
       return res.status(400).send({
@@ -54,7 +52,7 @@ exports.update =  (req, res) => {
       })
       .catch(err => {
         res.status(500).send({
-          message: "Error updating Recipe with id=" + id
+          message: "Error updating StudyList with id=" + id
         });
       });
 };
@@ -63,15 +61,15 @@ exports.update =  (req, res) => {
 exports.delete = (req,res) => {
   const id = req.query.id;
 
-  Recipe.findByIdAndRemove(id)
+  StudyList.findByIdAndRemove(id)
     .then(data => {
       if (!data) {
         res.status(404).send({
-          message: `Cannot delete recipe with id= ${id}. Maybe Tutorial was not found!`
+          message: `Cannot delete wordslist with id= ${id}. Maybe Tutorial was not found!`
         });
       } else {
         res.send({
-          message: "recipe was deleted successfully!"
+          message: "wordslist was deleted successfully!"
         });
       }
     })

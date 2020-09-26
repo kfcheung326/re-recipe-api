@@ -1,33 +1,32 @@
 const db = require("../models");
-const Video = db.video;
+const Feedback = db.feedback;
 
-exports.uploadVideo = (req, res) => {
-    const video = new Video({
-        name:req.body.name,
-        link:req.body.link,
-        wordList:req.body.wordList
+exports.uploadFeedback = (req, res) => {
+    const feedback = new Feedback({
+        feedback:req.body.feedback,
+        
     });
 
-    video.save((err, user) => {
+    feedback.save((err, user) => {
             if (err) {
               res.status(500).send({ message: err });
               return;
             }
-    res.send({ message: "video was upload successfully!" });
+    res.send({ message: "feedback was upload successfully!" });
 
     });
 
 };
 
-exports.listVideo = (req, res) => {
-  Video.find()
+exports.listFeedback = (req, res) => {
+  Feedback.find()
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving video."
+          err.message || "Some error occurred while retrieving feedback."
       });
     });
 
@@ -44,7 +43,7 @@ exports.update =  (req, res) => {
   
     const id = req.query.id;
   
-    Video.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+    Feedback.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
       .then(data => {
         if (!data) {
           res.status(404).send({
@@ -59,7 +58,7 @@ exports.update =  (req, res) => {
       });
 };
 
-// delete existing video
+// delete existing feedback
 exports.delete = (req,res) => {
   const id = req.query.id;
 

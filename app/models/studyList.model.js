@@ -1,9 +1,7 @@
 const mongoose = require("mongoose");
   var schema = mongoose.Schema({
-    name: String,
-    link: String,
-    wordList: Array,
-    status:Boolean
+    userId: String,
+    words: Array
   }
   );
 
@@ -13,6 +11,6 @@ schema.method("toJSON", function() {
     return object;
   });
 
-const Video = mongoose.model("Video",schema);
+const StudyList = mongoose.model("StudyList",schema);
 
-module.exports = Video;
+module.exports = StudyList;

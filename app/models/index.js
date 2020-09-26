@@ -10,6 +10,10 @@ db.role = require("./role.model");
 db.video = require("./video.model");
 db.community = require("./community.model");
 db.image = require("./image.model");
+db.studyList = require("./studyList.model");
+db.feedback = require("./feedback.model");
+
+
 
 db.ROLES = ["user", "admin", "moderator"];
 

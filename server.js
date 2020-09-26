@@ -44,6 +44,9 @@ require("./app/routes/user.routes")(app);
 require("./app/routes/video.routes")(app);
 require("./app/routes/community.routes")(app);
 require("./app/routes/image.routes")(app);
+require("./app/routes/studyList.routes")(app);
+require("./app/routes/feedback.routes")(app);
+
 
 
 

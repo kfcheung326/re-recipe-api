@@ -1,10 +1,9 @@
 const mongoose = require("mongoose");
   var schema = mongoose.Schema({
-    name: String,
-    link: String,
-    wordList: Array,
-    status:Boolean
-  }
+    feedback: String,
+    status:Boolean,
+    timestamp: { type: Date, default: Date.now}
+  }, 
   );
 
 schema.method("toJSON", function() {
@@ -13,6 +12,6 @@ schema.method("toJSON", function() {
     return object;
   });
 
-const Video = mongoose.model("Video",schema);
+const Feedback = mongoose.model("Feedback",schema);
 
-module.exports = Video;
+module.exports = Feedback;
